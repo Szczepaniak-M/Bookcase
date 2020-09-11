@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {BookModel, BookStatusOption} from './book.model';
-import {BookService} from "../book-add/book.service";
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
+import {DataStorageService} from '../shared/data-storage.service';
 
 @Component({
   selector: 'app-book-list-item',
@@ -25,21 +25,21 @@ import {Router} from "@angular/router";
 export class BookListItemComponent {
   @Input() book: BookModel;
 
-  constructor(private bookService: BookService,
-              private router: Router) {
+  constructor(private router: Router,
+              private dataStorageService: DataStorageService) {
   }
 
   onClickAssignMe(): void {
     const user = JSON.parse(localStorage.getItem('userData'));
     if (user) {
-      this.bookService.addBookOwner(this.book.id);
+      this.dataStorageService.addBookOwner(this.book);
     } else {
       this.router.navigateByUrl('/login');
     }
   }
 
   onClickUnassignMe(): void {
-    this.bookService.deleteBookOwner(this.book.id);
+    this.dataStorageService.deleteBookOwner(this.book);
   }
 
   isBookAvailable(): boolean {

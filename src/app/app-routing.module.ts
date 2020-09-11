@@ -5,10 +5,11 @@ import {BookListComponent} from './book-list/book-list.component';
 import {ErrorPageComponent} from './error-page/error-page.component';
 import {BookAddComponent} from './book-add/book-add.component';
 import {OrderBookComponent} from './order-book/order-book.component';
+import {BooksResolverService} from './shared/books-resolver.service';
 import {AuthenticationGuard} from './authentication/authentication.guard';
 
 const routes: Routes = [
-  {path: '', component: BookListComponent},
+  {path: '', component: BookListComponent, resolve: [BooksResolverService]},
   {path: 'login', component: AuthenticationComponent},
   {path: 'add', canActivate: [AuthenticationGuard], component: BookAddComponent},
   {path: 'order-book', canActivate: [AuthenticationGuard], component: OrderBookComponent},
