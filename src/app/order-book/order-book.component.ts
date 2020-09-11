@@ -5,7 +5,7 @@ import {NgForm} from '@angular/forms';
 @Component({
   selector: 'app-order-book',
   template: `
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-md-center mt-4">
       <div class="col-xs-12 col-md-6 col-md-offset-3">
         <form #orderBookForm="ngForm" (ngSubmit)="onSubmit(orderBookForm)">
           <div class="form-group">
@@ -37,10 +37,10 @@ import {NgForm} from '@angular/forms';
             </div>
           </div>
           <button
-            class="btn btn-primary"
+            class="btn btn-primary mt-2 mb-4"
             type="submit"
             [disabled]="!orderBookForm.valid"
-          >Order Book</button>
+          >Zamów książkę</button>
         </form>
         <app-order-book-list></app-order-book-list>
       </div>

@@ -6,7 +6,7 @@ import {Subscription} from 'rxjs';
 @Component({
   selector: 'app-book-list',
   template: `
-    <div class="container">
+    <div class="container mt-4">
       <app-book-list-filter (filterChanged)="onFilterChange($event)"></app-book-list-filter>
       <div class="list-group-item row bg-secondary">
         <div class="row text-center align-items-center">
