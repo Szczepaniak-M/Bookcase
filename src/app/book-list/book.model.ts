@@ -4,6 +4,7 @@ export class BookModel {
   author: string;
   publicationYear: string;
   status: BookStatusOption;
+  owner?: string;
 }
 
 export enum BookStatusOption {
@@ -15,8 +16,7 @@ export enum BookStatusOption {
 export const BOOK_STATUS: BookStatusOption[] = [BookStatusOption.AVAILABLE, BookStatusOption.RENTAL, BookStatusOption.ALL];
 
 export class BookFilter {
-  title?: string;
-  author?: string;
+  data?: string;
   status?: BookStatusOption;
 }
 
