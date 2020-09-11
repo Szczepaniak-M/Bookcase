@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {BookModel, BookStatusOption} from './book.model';
 import {BookService} from "../book-add/book.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-book-list-item',
@@ -24,11 +25,17 @@ import {BookService} from "../book-add/book.service";
 export class BookListItemComponent {
   @Input() book: BookModel;
 
-  constructor(private bookService: BookService) {
+  constructor(private bookService: BookService,
+              private router: Router) {
   }
 
   onClickAssignMe(): void {
-    this.bookService.addBookOwner(this.book.id);
+    const user = JSON.parse(localStorage.getItem('userData'));
+    if (user) {
+      this.bookService.addBookOwner(this.book.id);
+    } else {
+      this.router.navigateByUrl('/login');
+    }
   }
 
   onClickUnassignMe(): void {
@@ -41,6 +48,6 @@ export class BookListItemComponent {
 
   isCurrentUserOwner(): boolean {
     const user = JSON.parse(localStorage.getItem('userData'));
-    return user.id === this.book.ownerId;
+    return user && user.id === this.book.ownerId;
   }
 }
