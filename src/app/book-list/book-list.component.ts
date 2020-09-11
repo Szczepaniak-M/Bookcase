@@ -18,7 +18,7 @@ import {Subscription} from 'rxjs';
       </div>
       <div
         class="list-group"
-        *ngFor=" let book of visibleBooks;">
+        *ngFor="let book of visibleBooks;">
         <app-book-list-item
           [book]="book"
         ></app-book-list-item>
@@ -29,8 +29,8 @@ import {Subscription} from 'rxjs';
 })
 export class BookListComponent implements OnInit, OnDestroy {
 
-  private allBooksList: BookModel[];
-  visibleBooks: BookModel[];
+  private allBooksList: BookModel[] = [];
+  visibleBooks: BookModel[] = [];
   subscription: Subscription;
 
   constructor(private bookListService: BookListService) {
@@ -39,6 +39,7 @@ export class BookListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.bookListService.booksListChanged.subscribe((books: BookModel[]) => this.allBooksList = books);
     this.allBooksList = this.bookListService.getBooks();
+    this.visibleBooks = this.allBooksList;
   }
 
   onFilterChange($event: BookFilter): void {
