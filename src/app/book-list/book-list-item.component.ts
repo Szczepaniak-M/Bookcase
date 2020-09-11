@@ -4,14 +4,16 @@ import {BookModel, BookStatusOption} from './book.model';
 @Component({
   selector: 'app-book-list-item',
   template: `
-    <div class="item-wrapper">
-      <div>
-        <div class="title">{{book.title}}</div>
-        <div class="author">{{book.author}}</div>
-      </div>
-      <div>
-        <div class="status"> {{book.status}}</div>
-        <button *ngIf="isBookAvailable()" (click)="onClickAssignMe()">Wypożycz</button>
+    <div class="list-group-item row">
+      <div class="row text-center align-items-center">
+        <div class="col-md-3 text-break">{{book.title}}</div>
+        <div class="col-md-3 text-break">{{book.author}}</div>
+
+        <div class="col-md-3"> {{book.status}}</div>
+        <div class="col-md-3">
+          <button class="btn btn-primary" *ngIf="isBookAvailable()" (click)="onClickAssignMe()">Wypożycz</button>
+          <p *ngIf="!isBookAvailable()"> {{ book.owner }}</p>
+        </div>
       </div>
     </div>
   `,

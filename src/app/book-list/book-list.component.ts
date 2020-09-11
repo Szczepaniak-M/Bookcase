@@ -5,10 +5,18 @@ import {BookListService} from './book-list.service';
 @Component({
   selector: 'app-book-list',
   template: `
-    <div class="book-list-wrapper">
+    <div class="container">
       <app-book-list-filter (filterChanged)="onFilterChange($event)"></app-book-list-filter>
+      <div class="list-group-item row bg-secondary">
+        <div class="row text-center align-items-center">
+          <div class="col-md-3 font-weight-bold">Tytuł</div>
+          <div class="col-md-3 font-weight-bold">Autor</div>
+          <div class="col-md-3 font-weight-bold">Status</div>
+          <div class="col-md-3 font-weight-bold">Wypożycz</div>
+        </div>
+      </div>
       <div
-        class="book-list"
+        class="list-group"
         *ngFor=" let book of visibleBooks;">
         <app-book-list-item
           [book]="book"
@@ -33,9 +41,17 @@ export class BookListComponent implements OnInit {
       title: 'test',
       author: 'Test Testowy',
       publicationYear: '2006',
-      status: BookStatusOption.AVAILABLE
+      status: BookStatusOption.AVAILABLE,
+      owner: null
     },
-      {id: 2, title: 'test2', author: 'Test Testowy', publicationYear: '2006', status: BookStatusOption.RENTAL}];
+      {
+        id: 2,
+        title: 'test2',
+        author: 'xDxDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDdDD',
+        publicationYear: '2006',
+        status: BookStatusOption.RENTAL,
+        owner: 'ja'
+      }];
     this.visibleBooks = this.allBooksList;
   }
 
@@ -44,11 +60,7 @@ export class BookListComponent implements OnInit {
   }
 
   private filterBooks(book: BookModel, filter: BookFilter): boolean {
-    if (filter.title && !book.title.includes(filter.title)){
-      return false;
-    }
-
-    if (filter.author && !book.author.includes(filter.author)){
+    if (filter.data && !book.title.includes(filter.data) && !book.author.includes(filter.data)) {
       return false;
     }
 
