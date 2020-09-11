@@ -10,7 +10,10 @@ import {BookModel, BookStatusOption} from './book.model';
         <div class="col-md-3 text-break">{{book.author}}</div>
 
         <div class="col-md-3"> {{book.status}}</div>
-        <button class="col-md-3 btn btn-primary" [disabled]="!isBookAvailable()" (click)="onClickAssignMe()">Wypożycz</button>
+        <div class="col-md-3">
+          <button class="btn btn-primary" *ngIf="isBookAvailable()" (click)="onClickAssignMe()">Wypożycz</button>
+          <p *ngIf="!isBookAvailable()"> {{ book.owner }}</p>
+        </div>
       </div>
     </div>
   `,

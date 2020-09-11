@@ -4,6 +4,7 @@ export class BookModel {
   author: string;
   publicationYear: string;
   status: BookStatusOption;
+  owner?: string;
 }
 
 export enum BookStatusOption {

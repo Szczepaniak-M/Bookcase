@@ -41,9 +41,17 @@ export class BookListComponent implements OnInit {
       title: 'test',
       author: 'Test Testowy',
       publicationYear: '2006',
-      status: BookStatusOption.AVAILABLE
+      status: BookStatusOption.AVAILABLE,
+      owner: null
     },
-      {id: 2, title: 'test2', author: 'xDxDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDdDD', publicationYear: '2006', status: BookStatusOption.RENTAL}];
+      {
+        id: 2,
+        title: 'test2',
+        author: 'xDxDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDdDD',
+        publicationYear: '2006',
+        status: BookStatusOption.RENTAL,
+        owner: 'ja'
+      }];
     this.visibleBooks = this.allBooksList;
   }
 
