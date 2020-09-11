@@ -16,6 +16,7 @@ export class BookListService {
   setBooks(books: BookModel[]): void {
     this.booksList = books;
     console.log(this.booksList);
+    // debugger;
     this.booksListChanged.next(this.booksList.slice());
   }
 
