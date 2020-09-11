@@ -7,8 +7,16 @@ import {BookListService} from './book-list.service';
   template: `
     <div class="container">
       <app-book-list-filter (filterChanged)="onFilterChange($event)"></app-book-list-filter>
+      <div class="list-group-item row bg-secondary">
+        <div class="row text-center align-items-center">
+          <div class="col-md-3 font-weight-bold">Tytuł</div>
+          <div class="col-md-3 font-weight-bold">Autor</div>
+          <div class="col-md-3 font-weight-bold">Status</div>
+          <div class="col-md-3 font-weight-bold">Wypożycz</div>
+        </div>
+      </div>
       <div
-        class="book-list"
+        class="list-group"
         *ngFor=" let book of visibleBooks;">
         <app-book-list-item
           [book]="book"
@@ -35,7 +43,7 @@ export class BookListComponent implements OnInit {
       publicationYear: '2006',
       status: BookStatusOption.AVAILABLE
     },
-      {id: 2, title: 'test2', author: 'xDDD', publicationYear: '2006', status: BookStatusOption.RENTAL}];
+      {id: 2, title: 'test2', author: 'xDxDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDdDD', publicationYear: '2006', status: BookStatusOption.RENTAL}];
     this.visibleBooks = this.allBooksList;
   }
 

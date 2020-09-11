@@ -4,8 +4,8 @@ import {BOOK_STATUS, BookFilter, BookStatusOption} from './book.model';
 @Component({
   selector: 'app-book-list-filter',
   template: `
-    <div class="row justify-content-md-center">
-      <div class="col-xs-12 col-md-8 col-md-offset-3 form-group">
+    <div class="row justify-content-center">
+      <div class="form-group w-100">
         <input class="form-control"
                type="text"
                id="book-list-search"
