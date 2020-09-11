@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {BookService} from './book-add.service';
+import {BookService} from './book.service';
 import {BookModel} from '../book-list/book.model';
 
 @Component({
