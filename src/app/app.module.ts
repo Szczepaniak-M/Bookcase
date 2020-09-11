@@ -12,6 +12,9 @@ import {LoadingSpinnerComponent} from './loading-spinner/loading-spinner.compone
 import {HttpClientModule} from '@angular/common/http';
 import {BookListFilterComponent} from './book-list/book-list-filter.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { OrderBookComponent } from './order-book/order-book.component';
+import { OrderBookListComponent } from './order-book/order-book-list/order-book-list.component';
+import { OrderBookListItemComponent } from './order-book/order-book-list-item/order-book-list-item.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     NavbarComponent,
     AuthenticationComponent,
     LoadingSpinnerComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    OrderBookComponent,
+    OrderBookListComponent,
+    OrderBookListItemComponent
   ],
   imports: [
     BrowserModule,

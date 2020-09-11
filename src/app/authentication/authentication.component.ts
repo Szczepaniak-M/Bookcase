@@ -56,7 +56,6 @@ import {Observable} from 'rxjs';
         </form>
       </div>
     </div>
-
   `
 })
 export class AuthenticationComponent implements OnInit {
