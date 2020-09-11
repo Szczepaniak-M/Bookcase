@@ -1,0 +1,26 @@
+:host{
+
+  .item-wrapper {
+    display: flex;
+    justify-content: space-between;
+    min-width: 700px;
+    margin-top: 3px;
+    border: 2px solid grey;
+    border-radius: 5px;
+    color: inherit;
+    text-decoration: none;
+    .title {
+      font-size: 20px;
+    }
+
+    .author {
+      font-size: 15px;
+    }
+
+    .status {
+      font-size: 20px;
+    }
+  }
+}
+
+
