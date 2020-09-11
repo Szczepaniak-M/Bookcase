@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {BookAddService} from './book-add.service';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {BookService} from './book-add.service';
 import {BookModel} from '../book-list/book.model';
 
 @Component({
@@ -8,9 +8,9 @@ import {BookModel} from '../book-list/book.model';
   styleUrls: ['book-add.component.scss']
 })
 export class BookAddComponent {
-  constructor(private bookAddService: BookAddService) {
-  }
+  constructor(private bookAddService: BookService) {
 
+  }
   book: BookModel = new BookModel();
 
 

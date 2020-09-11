@@ -9,7 +9,7 @@
              required
              [(ngModel)]="book.title"
              #title="ngModel">
-      <div [hidden]="title.valid || title.pristine"
+      <div [hidden]="title.invalid || title.untouched"
            class="alert alert-danger">
         Tytuł ksiażki jest wymagany
       </div>
@@ -24,7 +24,7 @@
              required
              [(ngModel)]="book.author"
              #author="ngModel">
-      <div [hidden]="author.valid || author.pristine"
+      <div [hidden]="author.invalid || author.untouched"
            class="alert alert-danger">
         Autor książki jest wymagany
       </div>
@@ -39,7 +39,7 @@
              [(ngModel)]="book.publicationYear"
              name="publicationYear"
              #publicationYear="ngModel">
-      <div [hidden]="publicationYear.valid || publicationYear.pristine"
+      <div [hidden]="publicationYear.valid || publicationYear.untouched"
            class="alert alert-danger">
         Rok wydania książki jest wymaany
       </div>
