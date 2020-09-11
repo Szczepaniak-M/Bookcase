@@ -1,0 +1,14 @@
+:host {
+
+  .book-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 900px;
+    margin: 40px auto 0;
+    .book-list {
+
+    }
+  }
+}
