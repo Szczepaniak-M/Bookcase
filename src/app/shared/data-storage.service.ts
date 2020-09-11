@@ -65,4 +65,20 @@ export class DataStorageService {
         console.log(response);
       });
   }
+
+  addBookOwner(book: BookModel): Observable<BookModel> {
+    const user = JSON.parse(localStorage.getItem('userData'));
+    return this.http.patch<BookModel>(
+      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey,
+      { owner: user.id} //todo
+    ).pipe();
+  }
+
+  deleteBookOwner(book: BookModel): Observable<BookModel> {
+    const user = JSON.parse(localStorage.getItem('userData'));
+    return this.http.patch<BookModel>(
+      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey,
+      {owner: null} //todo
+    ).pipe();
+  }
 }
