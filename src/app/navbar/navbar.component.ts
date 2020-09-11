@@ -19,7 +19,7 @@ import {Subscription} from 'rxjs';
             <li class="btn" *ngIf="isAuthenticated">
               <a (click)="onLogout()">Logout</a>
             </li>
-           <li class="btn">
+           <li class="btn" *ngIf="isAuthenticated">
              <a routerLink="/order-book">Order Book</a>
            </li>
           </ul>
