@@ -4,20 +4,15 @@ import {BOOK_STATUS, BookFilter, BookStatusOption} from './book.model';
 @Component({
   selector: 'app-book-list-filter',
   template: `
-    <div class="book-list-filter">
-      <div class="form-group">
-        <input type="text"
+    <div class="row justify-content-md-center">
+      <div class="col-xs-12 col-md-8 col-md-offset-3 form-group">
+        <input class="form-control"
+               type="text"
                id="book-list-search"
-               placeholder="Szukaj po tytule"
+               placeholder="Szukaj"
                #inputRef="ngModel"
-               (ngModelChange)="onTitleSearchValueChange($event)"
-               [ngModel]="bookFilter.title">
-        <input type="text"
-               id="book-list-search"
-               placeholder="Szukaj po autorze"
-               #inputRef="ngModel"
-               (ngModelChange)="onAuthorSearchValueChange($event)"
-               [ngModel]="bookFilter.author">
+               (ngModelChange)="onSearch($event)"
+               [ngModel]="bookFilter.data">
         <label for="status-combo">Dostępność</label>
         <select id="status-combo"
                 class="form-control"
@@ -35,13 +30,8 @@ export class BookListFilterComponent {
   bookFilter: BookFilter = {status: BookStatusOption.ALL};
   bookStatusOption: BookStatusOption[] = BOOK_STATUS;
 
-  onTitleSearchValueChange($event: string): void {
-    this.bookFilter.title = $event;
-    this.filterChanged.emit(this.bookFilter);
-  }
-
-  onAuthorSearchValueChange($event: string): void {
-    this.bookFilter.author = $event;
+  onSearch($event: string): void {
+    this.bookFilter.data = $event;
     this.filterChanged.emit(this.bookFilter);
   }
 

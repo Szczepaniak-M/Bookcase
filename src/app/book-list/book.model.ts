@@ -15,8 +15,7 @@ export enum BookStatusOption {
 export const BOOK_STATUS: BookStatusOption[] = [BookStatusOption.AVAILABLE, BookStatusOption.RENTAL, BookStatusOption.ALL];
 
 export class BookFilter {
-  title?: string;
-  author?: string;
+  data?: string;
   status?: BookStatusOption;
 }
 

@@ -5,7 +5,7 @@ import {BookListService} from './book-list.service';
 @Component({
   selector: 'app-book-list',
   template: `
-    <div class="book-list-wrapper">
+    <div class="container">
       <app-book-list-filter (filterChanged)="onFilterChange($event)"></app-book-list-filter>
       <div
         class="book-list"
@@ -35,7 +35,7 @@ export class BookListComponent implements OnInit {
       publicationYear: '2006',
       status: BookStatusOption.AVAILABLE
     },
-      {id: 2, title: 'test2', author: 'Test Testowy', publicationYear: '2006', status: BookStatusOption.RENTAL}];
+      {id: 2, title: 'test2', author: 'xDDD', publicationYear: '2006', status: BookStatusOption.RENTAL}];
     this.visibleBooks = this.allBooksList;
   }
 
@@ -44,11 +44,7 @@ export class BookListComponent implements OnInit {
   }
 
   private filterBooks(book: BookModel, filter: BookFilter): boolean {
-    if (filter.title && !book.title.includes(filter.title)){
-      return false;
-    }
-
-    if (filter.author && !book.author.includes(filter.author)){
+    if (filter.data && !book.title.includes(filter.data) && !book.author.includes(filter.data)) {
       return false;
     }
 
