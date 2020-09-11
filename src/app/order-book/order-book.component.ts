@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {BookModel} from '../book-list/book.model';
 import {NgForm} from '@angular/forms';
+import {DataStorageService} from '../shared/data-storage.service';
+import {User} from '../authentication/user.model';
+import {BookOrderStatus, OrderBook} from './orderBook.model';
 
 @Component({
   selector: 'app-order-book',
@@ -23,7 +26,7 @@ import {NgForm} from '@angular/forms';
             </div>
           </div>
           <div class="form-group">
-            <label for="title">Autor</label>
+            <label for="author">Autor</label>
             <input type="text"
                    class="form-control"
                    id="author"
@@ -40,7 +43,8 @@ import {NgForm} from '@angular/forms';
             class="btn btn-primary"
             type="submit"
             [disabled]="!orderBookForm.valid"
-          >Order Book</button>
+          >Order Book
+          </button>
         </form>
         <app-order-book-list></app-order-book-list>
       </div>
@@ -52,7 +56,7 @@ export class OrderBookComponent implements OnInit {
 
   book: BookModel = new BookModel();
 
-  constructor() {
+  constructor(private dataStorageService: DataStorageService) {
   }
 
   ngOnInit(): void {
@@ -60,5 +64,11 @@ export class OrderBookComponent implements OnInit {
 
   onSubmit(form: NgForm): void {
     console.log(form);
+    const title = form.value.title;
+    const author = form.value.author;
+    const userData: User = JSON.parse(localStorage.getItem('userData'));
+
+    const order: OrderBook = {title, author, status: BookOrderStatus.WAITING, purchaserId: userData.email};
+    this.dataStorageService.addOrders(order);
   }
 }
