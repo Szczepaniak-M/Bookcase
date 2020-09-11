@@ -16,6 +16,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { OrderBookComponent } from './order-book/order-book.component';
 import { OrderBookListComponent } from './order-book/order-book-list/order-book-list.component';
 import { OrderBookListItemComponent } from './order-book/order-book-list-item/order-book-list-item.component';
+import {BooksResolverService} from './shared/books-resolver.service';
 
 @NgModule({
   declarations: [

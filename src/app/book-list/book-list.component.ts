@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BookFilter, BookModel, BookStatusOption} from './book.model';
 import {BookListService} from './book-list.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-book-list',
@@ -26,33 +27,18 @@ import {BookListService} from './book-list.service';
   `,
   styleUrls: ['book-list.component.scss']
 })
-export class BookListComponent implements OnInit {
+export class BookListComponent implements OnInit, OnDestroy {
+
+  private allBooksList: BookModel[];
+  visibleBooks: BookModel[];
+  subscription: Subscription;
 
   constructor(private bookListService: BookListService) {
   }
 
-  private allBooksList: BookModel[];
-  visibleBooks: BookModel[];
-
   ngOnInit(): void {
-    this.allBooksList = this.bookListService.getBookList();
-    this.allBooksList = [{
-      id: 1,
-      title: 'test',
-      author: 'Test Testowy',
-      publicationYear: '2006',
-      status: BookStatusOption.AVAILABLE,
-      owner: null
-    },
-      {
-        id: 2,
-        title: 'test2',
-        author: 'xDxDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDdDD',
-        publicationYear: '2006',
-        status: BookStatusOption.RENTAL,
-        owner: 'ja'
-      }];
-    this.visibleBooks = this.allBooksList;
+    this.subscription = this.bookListService.booksListChanged.subscribe((books: BookModel[]) => this.allBooksList = books);
+    this.allBooksList = this.bookListService.getBooks();
   }
 
   onFilterChange($event: BookFilter): void {
@@ -66,4 +52,9 @@ export class BookListComponent implements OnInit {
 
     return filter.status === BookStatusOption.ALL || filter.status === book.status;
   }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
 }

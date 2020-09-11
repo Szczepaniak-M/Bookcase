@@ -1,20 +1,16 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {BookModel} from '../book-list/book.model';
-import {environment} from '../../environments/environment';
-import {Observable} from 'rxjs';
+import {DataStorageService} from '../shared/data-storage.service';
+import {BookListService} from '../book-list/book-list.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
-  constructor(private httpClient: HttpClient) {
+  constructor(private dataStorageService: DataStorageService, private bookListService: BookListService) {
   }
 
-  addNewBook(book: BookModel): Observable<BookModel> {
-    return this.httpClient.post<BookModel>(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey,
-      book
-    ).pipe();
+  addNewBook(book: BookModel): void {
+    this.dataStorageService.addBook(book, this.bookListService.getBooks());
   }
 }

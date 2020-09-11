@@ -5,9 +5,10 @@ import {BookListComponent} from './book-list/book-list.component';
 import {ErrorPageComponent} from './error-page/error-page.component';
 import {BookAddComponent} from './book-add/book-add.component';
 import {OrderBookComponent} from './order-book/order-book.component';
+import {BooksResolverService} from './shared/books-resolver.service';
 
 const routes: Routes = [
-  {path: '', component: BookListComponent},
+  {path: '', component: BookListComponent, resolve: [BooksResolverService]},
   {path: 'login', component: AuthenticationComponent},
   {path: 'add', component: BookAddComponent},
   {path: 'order-book', component: OrderBookComponent},
