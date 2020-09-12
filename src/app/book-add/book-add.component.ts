@@ -6,7 +6,7 @@ import {DataStorageService} from '../shared/data-storage.service';
 @Component({
   selector: 'app-book-add',
   template: `
-    <div class="form-wrapper">
+    <div class="form-wrapper mt-4">
       <form #bookForm="ngForm" (ngSubmit)="onSubmit(bookForm)">
         <div class="form-group">
           <label for="title">Tytuł</label>
@@ -17,26 +17,26 @@ import {DataStorageService} from '../shared/data-storage.service';
                  required
                  [(ngModel)]="book.title"
                  #title="ngModel">
-          <div [hidden]="title.invalid || title.untouched"
+          <div [hidden]="title.valid || title.untouched"
                class="alert alert-danger">
             Tytuł ksiażki jest wymagany
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="author">Autor</label>
-          <input type="text"
-                 class="form-control"
-                 id="author"
-                 name="author"
-                 required
-                 [(ngModel)]="book.author"
-                 #author="ngModel">
-          <div [hidden]="author.invalid || author.untouched"
-               class="alert alert-danger">
-            Autor książki jest wymagany
-          </div>
+      <div class="form-group">
+        <label for="author">Autor</label>
+        <input type="text"
+               class="form-control"
+               id="author"
+               name="author"
+               required
+               [(ngModel)]="book.author"
+               #author="ngModel">
+        <div [hidden]="author.valid || author.untouched"
+             class="alert alert-danger">
+          Autor książki jest wymagany
         </div>
+      </div>
 
         <div class="form-group">
           <label for="publicationYear">Rok wydania</label>
