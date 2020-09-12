@@ -33,7 +33,6 @@ export class DataStorageService {
   addBook(newBook: BookModel): void {
     const booksList = this.bookListService.getBooks();
     booksList.push(newBook);
-    console.log(booksList);
     this.http.put(
       'https://bookcase-3077b.firebaseio.com/books.json',
       booksList
@@ -66,18 +65,38 @@ export class DataStorageService {
       });
   }
 
-  addBookOwner(book: BookModel, email: string): Observable<BookModel> {
-    // return this.http.patch<BookModel>(
-    //   'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey,
-    //   { owner: user.id} //todo
-    // ).pipe();
+  addBookOwner(book: BookModel): void {
+    const booksList = this.bookListService.getBooks();
+    const filteredBook = booksList.filter(bookItem => bookItem.title === book.title && bookItem.author === book.author)[0];
+    const id = booksList.indexOf(filteredBook);
+    console.log(filteredBook);
+    this.http.patch<BookModel>(
+      'https://bookcase-3077b.firebaseio.com/books/' + id + '.json',
+      {
+        title: filteredBook.title,
+        author: filteredBook.author,
+        publicationYear: filteredBook.publicationYear,
+        status: filteredBook.status,
+        owner: filteredBook.owner
+      }
+    ).subscribe(console.log);
+
   }
 
-  deleteBookOwner(book: BookModel): Observable<BookModel> {
-    // const user = JSON.parse(localStorage.getItem('userData'));
-    // return this.http.patch<BookModel>(
-    //   'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey,
-    //   {owner: null} //todo
-    // ).pipe();
+  deleteBookOwner(book: BookModel): void {
+    const booksList = this.bookListService.getBooks();
+    const filteredBook = booksList.filter(bookItem => bookItem.title === book.title && bookItem.author === book.author)[0];
+    const id = booksList.indexOf(filteredBook);
+    console.log(filteredBook);
+    this.http.patch<BookModel>(
+      'https://bookcase-3077b.firebaseio.com/books/' + id + '.json',
+      {
+        title: filteredBook.title,
+        author: filteredBook.author,
+        publicationYear: filteredBook.publicationYear,
+        status: filteredBook.status,
+        owner: filteredBook.owner
+      }
+    ).subscribe(console.log);
   }
 }

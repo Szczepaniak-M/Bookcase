@@ -36,7 +36,7 @@ import {BookOrderStatus, OrderBook} from './orderBook.model';
                    #author="ngModel">
             <div [hidden]="author.valid || author.untouched"
                  class="alert alert-danger">
-              Autor ksiażki jest wymagany
+              Autor książki jest wymagany
             </div>
           </div>
           <button

@@ -3,6 +3,7 @@ import {BookModel, BookStatusOption} from './book.model';
 import {Router} from '@angular/router';
 import {DataStorageService} from '../shared/data-storage.service';
 import {User} from '../authentication/user.model';
+import {BookListService} from './book-list.service';
 
 @Component({
   selector: 'app-book-list-item',
@@ -15,8 +16,10 @@ import {User} from '../authentication/user.model';
         <div class="col-md-3"> {{book.status}}</div>
         <div class="col-md-3">
           <button class="btn btn-primary" *ngIf="isBookAvailable()" (click)="onClickAssignMe()">Wypożycz</button>
-          <button class="btn btn-primary" *ngIf="!isBookAvailable() && isCurrentUserOwner()" (click)="onClickUnassignMe()">Oddaj</button>
-          <p *ngIf="!isBookAvailable() && !isCurrentUserOwner()"> {{ book.owner }}</p>
+          <div *ngIf="!isBookAvailable()">
+            <button class="btn btn-danger" *ngIf="isCurrentUserOwner()" (click)="onClickUnassignMe()">Usun</button>
+            <p *ngIf="!isCurrentUserOwner()"> {{ book.owner }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -27,19 +30,22 @@ export class BookListItemComponent {
   @Input() book: BookModel;
 
   constructor(private router: Router,
-              private dataStorageService: DataStorageService) {
+              private dataStorageService: DataStorageService,
+              private bookListService: BookListService) {
   }
 
   onClickAssignMe(): void {
     const user: User = JSON.parse(localStorage.getItem('userData'));
     if (user) {
-      this.dataStorageService.addBookOwner(this.book, user.email);
+      this.bookListService.addOwner(this.book, user.email);
+      this.dataStorageService.addBookOwner(this.book);
     } else {
       this.router.navigateByUrl('/login');
     }
   }
 
   onClickUnassignMe(): void {
+    this.bookListService.deleteOwner(this.book);
     this.dataStorageService.deleteBookOwner(this.book);
   }
 
@@ -48,7 +54,8 @@ export class BookListItemComponent {
   }
 
   isCurrentUserOwner(): boolean {
-    const user = JSON.parse(localStorage.getItem('userData'));
-    return user && user.id === this.book.ownerId;
+    const user: User = JSON.parse(localStorage.getItem('userData'));
+    return user && user.email === this.book.owner;
+
   }
 }
