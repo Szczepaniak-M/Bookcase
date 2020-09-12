@@ -14,6 +14,9 @@ import {Subscription} from 'rxjs';
         <div class="navbar">
           <ul class="nav">
             <li class="nav-item mr-2 ml-2" >
+              <a class="nav-link btn text-light" *ngIf="isAuthenticated" routerLink="/add">Dodaj ksiażkę</a>
+            </li>
+            <li class="nav-item mr-2 ml-2" >
               <a class="nav-link btn text-light" *ngIf="isAuthenticated" routerLink="/order-book">Zamów ksiażkę</a>
             </li>
             <li class="nav-item mr-2 ml-2" *ngIf="!isAuthenticated">

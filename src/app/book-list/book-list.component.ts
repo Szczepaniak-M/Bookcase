@@ -8,7 +8,7 @@ import {Subscription} from 'rxjs';
   template: `
     <div class="container mt-4">
       <app-book-list-filter (filterChanged)="onFilterChange($event)"></app-book-list-filter>
-      <div class="list-group-item row bg-secondary">
+      <div class="list-group-item row bg-secondary rounded-top">
         <div class="row text-center align-items-center">
           <div class="col-md-3 font-weight-bold">Tytuł</div>
           <div class="col-md-3 font-weight-bold">Autor</div>

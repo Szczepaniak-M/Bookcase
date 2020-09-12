@@ -5,7 +5,7 @@ import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-book-add',
-  template: `<div class="form-wrapper">
+  template: `<div class="form-wrapper mt-4">
     <form #bookForm="ngForm" (ngSubmit)="onSubmit(bookForm)">
       <div class="form-group">
         <label for="title">Tytuł</label>
@@ -16,7 +16,7 @@ import {NgForm} from '@angular/forms';
                required
                [(ngModel)]="book.title"
                #title="ngModel">
-        <div [hidden]="title.invalid || title.untouched"
+        <div [hidden]="title.valid || title.untouched"
              class="alert alert-danger">
           Tytuł ksiażki jest wymagany
         </div>
@@ -31,7 +31,7 @@ import {NgForm} from '@angular/forms';
                required
                [(ngModel)]="book.author"
                #author="ngModel">
-        <div [hidden]="author.invalid || author.untouched"
+        <div [hidden]="author.valid || author.untouched"
              class="alert alert-danger">
           Autor książki jest wymagany
         </div>

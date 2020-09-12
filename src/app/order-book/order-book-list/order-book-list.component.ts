@@ -7,7 +7,7 @@ import {OrderBookListService} from './order-book-list.service';
   selector: 'app-order-book-list',
   template: `
     <div class="container">
-      <div class="list-group-item row bg-secondary">
+      <div class="list-group-item row bg-secondary rounded-top">
         <div class="row text-center align-items-center">
           <div class="col-md-4 font-weight-bold">Tytuł</div>
           <div class="col-md-4 font-weight-bold">Autor</div>

@@ -20,7 +20,7 @@ import {BookOrderStatus, OrderBook} from './orderBook.model';
                    required
                    [(ngModel)]="book.title"
                    #title="ngModel">
-            <div [hidden]="title.valid && title.touched"
+            <div [hidden]="title.valid || title.untouched"
                  class="alert alert-danger">
               Tytuł ksiażki jest wymagany
             </div>
@@ -34,7 +34,7 @@ import {BookOrderStatus, OrderBook} from './orderBook.model';
                    required
                    [(ngModel)]="book.author"
                    #author="ngModel">
-            <div [hidden]="author.valid && author.touched"
+            <div [hidden]="author.valid || author.untouched"
                  class="alert alert-danger">
               Autor ksiażki jest wymagany
             </div>
