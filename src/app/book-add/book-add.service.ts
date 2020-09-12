@@ -11,6 +11,6 @@ export class BookService {
   }
 
   addNewBook(book: BookModel): void {
-    this.dataStorageService.addBook(book, this.bookListService.getBooks());
+    this.dataStorageService.addBook(book);
   }
 }

@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {BookModel, BookStatusOption} from './book.model';
 import {Router} from '@angular/router';
 import {DataStorageService} from '../shared/data-storage.service';
+import {User} from '../authentication/user.model';
 
 @Component({
   selector: 'app-book-list-item',
@@ -30,9 +31,9 @@ export class BookListItemComponent {
   }
 
   onClickAssignMe(): void {
-    const user = JSON.parse(localStorage.getItem('userData'));
+    const user: User = JSON.parse(localStorage.getItem('userData'));
     if (user) {
-      this.dataStorageService.addBookOwner(this.book);
+      this.dataStorageService.addBookOwner(this.book, user.email);
     } else {
       this.router.navigateByUrl('/login');
     }

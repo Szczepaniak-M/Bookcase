@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {BookOrderStatus, OrderBook} from '../orderBook.model';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {OrderBook} from '../orderBook.model';
+import {Subscription} from 'rxjs';
+import {OrderBookListService} from './order-book-list.service';
 
 @Component({
   selector: 'app-order-book-list',
@@ -23,20 +25,22 @@ import {BookOrderStatus, OrderBook} from '../orderBook.model';
   `,
   styleUrls: ['./order-book-list.component.scss']
 })
-export class OrderBookListComponent implements OnInit {
+export class OrderBookListComponent implements OnInit, OnDestroy {
 
   orderedBooks: OrderBook[];
-  constructor() {
+  subscription: Subscription;
+
+  constructor(private orderBookListService: OrderBookListService) {
   }
 
   ngOnInit(): void {
-    this.orderedBooks = [
-      {
-        author: 'Ja sam',
-        title: 'Trollo',
-        status: BookOrderStatus.WAITING
-      }
-    ];
+    this.subscription = this.orderBookListService.orderBooksListChanged.subscribe(orders => this.orderedBooks = orders);
+    this.orderedBooks = this.orderBookListService.getOrders();
   }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
 
 }
