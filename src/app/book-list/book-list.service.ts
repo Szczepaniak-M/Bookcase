@@ -14,7 +14,7 @@ export class BookListService {
   }
 
   setBooks(books: BookModel[]): void {
-    this.booksList = books;
+    this.booksList = books ? books : [];
     this.booksListChanged.next(this.booksList.slice());
   }
 
@@ -27,6 +27,16 @@ export class BookListService {
     const id = this.booksList.indexOf(updatedBook);
     updatedBook.owner = email;
     updatedBook.status = BookStatusOption.RENTAL;
+    this.booksList[id] = updatedBook;
+    console.log(this.booksList[id]);
+    this.booksListChanged.next(this.booksList.slice());
+  }
+
+  deleteOwner(bookO: BookModel): void {
+    const updatedBook = this.booksList.slice().filter(book => book.author === bookO.author && book.title === book.title)[0];
+    const id = this.booksList.indexOf(updatedBook);
+    updatedBook.owner = '';
+    updatedBook.status = BookStatusOption.AVAILABLE;
     this.booksList[id] = updatedBook;
     console.log(this.booksList[id]);
     this.booksListChanged.next(this.booksList.slice());
