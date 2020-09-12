@@ -40,11 +40,10 @@ import {BookOrderStatus, OrderBook} from './orderBook.model';
             </div>
           </div>
           <button
-            class="btn btn-primary"
+            class="btn btn-primary mt-2 mb-4"
             type="submit"
             [disabled]="!orderBookForm.valid"
-          >Order Book
-          </button>
+          >Zamów książkę</button>
         </form>
         <app-order-book-list></app-order-book-list>
       </div>

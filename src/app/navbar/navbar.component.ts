@@ -13,14 +13,14 @@ import {Subscription} from 'rxjs';
 
         <div class="navbar">
           <ul class="nav">
-            <li class="nav-item" >
-              <a class="nav-link btn text-light" *ngIf="isAuthenticated" routerLink="/order-book">Order Book</a>
+            <li class="nav-item mr-2 ml-2" >
+              <a class="nav-link btn text-light" *ngIf="isAuthenticated" routerLink="/order-book">Zamów ksiażkę</a>
             </li>
-            <li class="nav-item" *ngIf="!isAuthenticated">
-              <a class="my-2 my-sm-0 mr-1 btn btn-outline-light" routerLink="/login">Login</a>
+            <li class="nav-item mr-2 ml-2" *ngIf="!isAuthenticated">
+              <a class="my-2 my-sm-0 mr-1 btn btn-outline-light" routerLink="/login">Zaloguj się</a>
             </li>
-            <li class="nav-item" *ngIf="isAuthenticated">
-              <a class="my-2 my-sm-0 mr-1 btn btn-outline-light" (click)="onLogout()">Logout</a>
+            <li class="nav-item mr-2 ml-2" *ngIf="isAuthenticated">
+              <a class="my-2 my-sm-0 mr-1 btn btn-outline-light" routerLink="/" (click)="onLogout()">Wyloguj się</a>
             </li>
           </ul>
         </div>
