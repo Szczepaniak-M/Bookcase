@@ -1,12 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {BookModel, BookStatusOption} from '../book-list/book.model';
+import {BookModel} from '../book-list/book.model';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {BookListService} from '../book-list/book-list.service';
 import {OrderBook} from '../order-book/orderBook.model';
 import {OrderBookListService} from '../order-book/order-book-list/order-book-list.service';
-import {log} from 'util';
 
 @Injectable({
   providedIn: 'root'
